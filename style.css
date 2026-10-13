@@ -24,6 +24,7 @@ nav {
     border-bottom: 2px solid #1f2735;
     padding: 15px 0;
     margin-bottom: 30px;
+    overflow-x: auto;
 }
 
 .nav-container {
@@ -33,6 +34,7 @@ nav {
     justify-content: center;
     gap: 15px;
     padding: 0 15px;
+    white-space: nowrap;
 }
 
 .nav-btn {
@@ -72,20 +74,33 @@ nav {
     letter-spacing: 1px;
 }
 
+/* Selektor drużyn - poprawiony na dwa rzędy z płynnym przewijaniem na mobile */
 .teams-selector {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
     align-items: center;
     margin-bottom: 30px;
+    width: 100%;
 }
 
 .teams-row {
     display: flex;
-    flex-wrap: wrap;
     gap: 10px;
-    justify-content: center;
+    justify-content: flex-start;
     width: 100%;
+    overflow-x: auto;
+    padding-bottom: 5px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.teams-row::-webkit-scrollbar {
+    height: 4px;
+}
+
+.teams-row::-webkit-scrollbar-thumb {
+    background: #1f2735;
+    border-radius: 4px;
 }
 
 .team-btn {
@@ -101,6 +116,8 @@ nav {
     display: flex;
     align-items: center;
     gap: 8px;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .team-btn img {
@@ -295,7 +312,7 @@ nav {
     border-top-color: #313d4f;
 }
 
-/* Tabela ligowa z obsługą przewijania poziomego na telefonach */
+/* Tabela ligowa w kontenerze z przewijaniem */
 .table-responsive {
     width: 100%;
     overflow-x: auto;
@@ -348,7 +365,7 @@ nav {
     object-fit: contain;
 }
 
-/* Wyniki */
+/* Kafelki wyników - poprawione dla urządzeń mobilnych */
 .result-card {
     background: #151a23;
     border: 1px solid #1f2735;
@@ -359,7 +376,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     transition: border-color 0.2s;
-    gap: 10px;
+    gap: 15px;
 }
 
 .result-card:hover {
@@ -379,7 +396,6 @@ nav {
     gap: 12px;
     font-size: 1rem;
     font-weight: 800;
-    flex-wrap: wrap;
 }
 
 .match-team {
@@ -403,9 +419,10 @@ nav {
     border-radius: 8px;
     border: 1px solid #1f2735;
     white-space: nowrap;
+    flex-shrink: 0;
 }
 
-/* Responsywność dla urządzeń mobilnych (telefony) */
+/* Responsywność dla ekranów telefonów */
 @media (max-width: 768px) {
     .container {
         padding: 10px;
@@ -419,10 +436,11 @@ nav {
     .nav-container {
         gap: 8px;
         padding: 0 10px;
+        justify-content: flex-start; /* Pozwala przewijać nawigację na małych ekranach */
     }
 
     .nav-btn {
-        padding: 8px 12px;
+        padding: 8px 14px;
         font-size: 0.75rem;
         letter-spacing: 0.5px;
     }
@@ -462,25 +480,25 @@ nav {
         font-size: 0.7rem;
     }
 
+    /* Układ pionowy wyników na telefonie, żeby nic się nie nakładało */
     .result-card {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
         padding: 12px;
-    }
-
-    .match-score {
-        align-self: stretch;
-        text-align: center;
-        margin-top: 8px;
+        gap: 10px;
     }
 
     .match-teams-container {
-        font-size: 0.9rem;
-        gap: 8px;
+        justify-content: space-between;
+        font-size: 0.85rem;
+    }
+
+    .match-score {
+        text-align: center;
+        width: 100%;
     }
 }
 
-/* Bardzo małe telefony */
 @media (max-width: 480px) {
     .grid {
         grid-template-columns: 1fr;
