@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Esportowy - Liga</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Górne Menu Nawigacyjne -->
+    <nav>
+        <div class="nav-container">
+            <button class="nav-btn active" onclick="switchTab('sklady', this)">Składy Drużyn</button>
+            <button class="nav-btn" onclick="switchTab('tabela', this)">Tabela Ligowa</button>
+            <button class="nav-btn" onclick="switchTab('wyniki', this)">Ostatnie Wyniki</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Ekran ładowania -->
+        <div id="loading" class="loading-screen">Pobieranie danych ligowych z arkusza...</div>
+
+        <!-- SEKCJA: SKŁADY -->
+        <div id="sklady-section" class="section-view active">
+            <div id="team-buttons" class="teams-selector"></div>
+            <div class="header">
+                <h1 id="current-team-name"></h1>
+            </div>
+            <div id="roster-content"></div>
+        </div>
+
+        <!-- SEKCJA: TABELA -->
+        <div id="tabela-section" class="section-view">
+            <div class="header">
+                <h1>Tabela Ligowa</h1>
+            </div>
+            <div id="table-content"></div>
+        </div>
+
+        <!-- SEKCJA: WYNIKI -->
+        <div id="wyniki-section" class="section-view">
+            <div class="header">
+                <h1>Ostatnie Wyniki</h1>
+            </div>
+            <div id="results-content"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
